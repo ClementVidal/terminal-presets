@@ -85,7 +85,7 @@ const parseDefault = (config?: Partial<Terminal>): Terminal => {
     {},
     {
       icon: "terminal-view-icon",
-      shellArgs: ["-l"],
+      shellArgs: [""],
       message: null,
       shellPath: "/bin/bash",
       color: TerminalColor.white,
@@ -153,7 +153,7 @@ export const parseConfig = (filePath: string): Config => {
 export const findConfigFile = (): string | null => {
   let root: string | null = null;
   if (vscode.workspace.workspaceFile) {
-    root = vscode.workspace.workspaceFile.path;
+    root = path.dirname(vscode.workspace.workspaceFile.path).substr(1);
   } else if (vscode.workspace.workspaceFolders?.length) {
     root = vscode.workspace.workspaceFolders[0].uri.path;
   } else {
