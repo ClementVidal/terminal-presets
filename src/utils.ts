@@ -1,23 +1,27 @@
-import * as path from "path";
-import * as fs from "fs";
+import * as path from "path"
+import * as fs from "fs"
 
 function getParentFolder(folder: string): string {
-  return path.resolve(folder, "..");
+    return path.resolve(folder, "..")
 }
 
 export function findFileUpward(name: string, startDir: string) {
-  let directory = startDir;
+    let directory = startDir
 
-  while (true) {
-    const fullPath = path.join(directory, name);
-    if (fs.existsSync(fullPath)) {
-      return fullPath;
-    }
-    // If we reach root, quit
-    if (directory === path.sep) {
-      return null;
-    }
+    while (true) {
+        const fullPath = path.join(directory, name)
+        if (fs.existsSync(fullPath)) {
+            return fullPath
+        }
+        // If we reach root, quit
+        if (directory === path.sep) {
+            return null
+        }
 
-    directory = getParentFolder(directory);
-  }
+        directory = getParentFolder(directory)
+    }
+}
+
+export function isNonEmptyString(str?: string) {
+    return typeof str === "string" && str.length > 0
 }

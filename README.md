@@ -42,25 +42,25 @@ Here is the "typescript" version of the expected config file layout:
 // Configuration object for a single terminal
 interface Terminal {
   // The working directory of the terminal
-  cwd: string;
+  cwd?: string;
   // The name of the terminal
-  name: string;
+  name?: string;
   // The icon of the terminal
   // See https://code.visualstudio.com/api/references/icons-in-labels#icon-listing for a list of available icon
-  icon: string;
+  icon?: string;
   // A message to display before the prompt is displayed
-  message: string;
+  message?: string;
   // The color of the terminal icon
   // See below for a list of available color
-  color: TerminalColor;
+  color?: TerminalColor;
   // A map of enironment variable to pass to the terminal
-  env: Record<string, string>;
+  env?: Record<string, string>;
   // The path to your favorite shell
-  shellPath: string;
+  shellPath?: string;
   // Args to pass to the shell process
-  shellArgs: string[];
+  shellArgs?: string[];
   // A bash command executed in the terminal on startup
-  command: string;
+  command?: string;
 }
 
 // Configuration object for a whole preset
@@ -86,14 +86,7 @@ Once a terminal configuration is merged with the `default` config, if some field
 ```json
 {
   "icon": "terminal-view-icon",
-  "shellArgs": ["-l"],
-  "message": null,
-  "shellPath": "/bin/bash",
   "color": "white",
-  "cwd": null,
-  "env": {},
-  "name": "",
-  "command": null
 }
 ```
 
@@ -118,7 +111,8 @@ https://code.visualstudio.com/api/references/icons-in-labels#icon-listing
 ```json
 {
   "default": {
-    "shellPath": "/opt/homebrew/bin/zsh"
+    "shellPath": "/opt/homebrew/bin/zsh",
+    "shellArgs": ["-l"]
   },
   "presets": [
     {
